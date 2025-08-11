@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NOC Operations - Capacity Building Program for NREN Professionals</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #F28C28;
+            --secondary: #E88C2D;
+            --body: #FCF5EC;
+            --text: #1D1D1B;
+            --secondary-dark: #9F4B14;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--body);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--white);
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            height: 60px;
+            width: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .main-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin: 1rem 0;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            text-align: center;
+            opacity: 0.9;
+            margin-bottom: 1rem;
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--secondary-dark);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        /* Main Content */
+        main {
+            padding: 3rem 0;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, rgba(242,140,40,0.1), rgba(232,140,45,0.1));
+            border-radius: 15px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .hero h2 {
+            font-size: 2rem;
+            color: var(--secondary-dark);
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        .section {
+            margin-bottom: 3rem;
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+        }
+
+        .section h3 {
+            color: var(--secondary-dark);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 3px solid var(--primary);
+            padding-bottom: 0.5rem;
+        }
+
+        .section p {
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        /* Countries Grid */
+        .countries-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .country-card {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--white);
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .country-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        /* Partners */
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .partner-card {
+            background: var(--body);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 5px solid var(--primary);
+            transition: all 0.3s ease;
+        }
+
+        .partner-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .partner-card h4 {
+            color: var(--secondary-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Activities */
+        .activity-timeline {
+            position: relative;
+            margin: 2rem 0;
+        }
+
+        .activity-timeline::before {
+            content: '';
+            position: absolute;
+            left: 30px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: var(--primary);
+        }
+
+        .activity-item {
+            position: relative;
+            margin: 2rem 0;
+            padding-left: 80px;
+        }
+
+        .activity-item::before {
+            content: '';
+            position: absolute;
+            left: 18px;
+            top: 8px;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background: var(--primary);
+            border: 4px solid var(--white);
+            box-shadow: 0 0 0 3px var(--primary);
+        }
+
+        .activity-item h4 {
+            color: var(--secondary-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Outcomes */
+        .outcomes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .outcome-card {
+            background: linear-gradient(135deg, rgba(242,140,40,0.1), rgba(232,140,45,0.05));
+            padding: 2rem;
+            border-radius: 15px;
+            border: 2px solid var(--primary);
+            transition: all 0.3s ease;
+        }
+
+        .outcome-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .outcome-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        /* SDG Section */
+        .sdg-cards {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .sdg-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            min-width: 200px;
+            border: 3px solid var(--primary);
+            transition: all 0.3s ease;
+        }
+
+        .sdg-card:hover {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .sdg-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--secondary-dark);
+            margin-bottom: 1rem;
+        }
+
+        .sdg-card:hover .sdg-number {
+            color: var(--white);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--secondary-dark);
+            color: var(--white);
+            padding: 2rem 0;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .footer-logos {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .footer-logo {
+            height: 40px;
+            width: auto;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 2rem;
+            }
+
+            .subtitle {
+                font-size: 1rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .nav-links a {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.9rem;
+            }
+
+            .hero {
+                padding: 2rem 1rem;
+            }
+
+            .section {
+                padding: 1.5rem;
+            }
+
+            .logo-section {
+                justify-content: center;
+            }
+
+            .logo {
+                height: 45px;
+            }
+
+            .activity-timeline::before {
+                left: 15px;
+            }
+
+            .activity-item {
+                padding-left: 50px;
+            }
+
+            .activity-item::before {
+                left: 3px;
+                width: 20px;
+                height: 20px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 15px;
+            }
+
+            .main-title {
+                font-size: 1.8rem;
+            }
+
+            .hero h2 {
+                font-size: 1.5rem;
+            }
+
+            .section h3 {
+                font-size: 1.5rem;
+            }
+
+            .logo {
+                height: 40px;
+            }
+
+            .countries-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+
+            .partners-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Loading animation */
+        .fade-in {
+            animation: fadeIn 0.6s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-section">
+                    <img src="images/logos/eu-logo.png" alt="European Union" class="logo">
+                    <img src="images/logos/tein-logo.png" alt="TEIN*CC" class="logo">
+                    <img src="images/logos/asia-connect-logo.png" alt="Asi@Connect" class="logo">
+                </div>
+            </div>
+            <h1 class="main-title">NOC Operations Capacity Building Program</h1>
+            <p class="subtitle">Enhancing NREN Professionals across Asia</p>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <ul class="nav-links">
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#countries">Countries</a></li>
+                <li><a href="#partners">Partners</a></li>
+                <li><a href="#activities">Activities</a></li>
+                <li><a href="#outcomes">Outcomes</a></li>
+                <li><a href="#future">Future</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <div class="container">
+            <section class="hero fade-in">
+                <h2>Bridging the Digital Divide Through Knowledge Sharing</h2>
+                <p>A strategic initiative to uplift the capacity of network engineers through structured exposure to best practices, modern tools, and collaborative operations from well-established National Research and Education Networks (NRENs).</p>
+            </section>
+
+            <section id="overview" class="section fade-in">
+                <h3>Program Overview</h3>
+                <p>The Capacity Building Program on NOC Operations addresses critical gaps in the technical and operational management of National Research and Education Networks across developing Asian countries. This initiative is part of Asi@Connect's broader vision of narrowing the digital divide and fostering knowledge sharing.</p>
+                <p>With the growing digital transformation in education and research sectors, NRENs are expected to handle increasing volumes of traffic with higher efficiency, security, and reliability. This program directly contributes to that aim through hands-on training and mentorship from leading global networks.</p>
+            </section>
+
+            <section id="countries" class="section fade-in">
+                <h3>Participating Countries & Regions</h3>
+                <p>The program included active participation from seven developing Asian countries, chosen due to their emerging demand for scalable, secure, and efficiently managed research networks:</p>
+                <div class="countries-grid">
+                    <div class="country-card">🇧🇩 Bangladesh</div>
+                    <div class="country-card">🇧🇹 Bhutan</div>
+                    <div class="country-card">🇳🇵 Nepal</div>
+                    <div class="country-card">🇻🇳 Vietnam</div>
+                    <div class="country-card">🇲🇲 Myanmar</div>
+                    <div class="country-card">🇱🇦 Laos</div>
+                    <div class="country-card">🇰🇭 Cambodia</div>
+                </div>
+            </section>
+
+            <section id="partners" class="section fade-in">
+                <h3>Partner Organizations</h3>
+                <p>The program was led by world-class network organizations, demonstrating a unique spirit of south-north technical exchange:</p>
+                <div class="partners-grid">
+                    <div class="partner-card">
+                        <h4>🇮🇳 National Knowledge Network (NKN) - India</h4>
+                        <p>Lead organization connecting over 1,600 institutions across India</p>
+                    </div>
+                    <div class="partner-card">
+                        <h4>🇯🇵 SINET & JGN - Japan</h4>
+                        <p>Advanced research network providing cutting-edge infrastructure</p>
+                    </div>
+                    <div class="partner-card">
+                        <h4>🇪🇺 GEANT - European Union</h4>
+                        <p>Pan-European research and education network</p>
+                    </div>
+                    <div class="partner-card">
+                        <h4>🇭🇰 HARNET - Hong Kong</h4>
+                        <p>Regional academic and research network</p>
+                    </div>
+                    <div class="partner-card">
+                        <h4>🇨🇳 CERNET - China</h4>
+                        <p>China Education and Research Network</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="activities" class="section fade-in">
+                <h3>Program Activities</h3>
+                <div class="activity-timeline">
+                    <div class="activity-item">
+                        <h4>Phase 1: Planning & Assessment</h4>
+                        <p>Initial online sessions between NKN and participating NRENs to assess current capabilities, including technical discussions around network performance, cost optimization, and incident handling.</p>
+                    </div>
+                    <div class="activity-item">
+                        <h4>Phase 2: Professional Nominations</h4>
+                        <p>Selection of qualified professionals through nominations and vetting processes to ensure diverse and skilled representation from each participating country.</p>
+                    </div>
+                    <div class="activity-item">
+                        <h4>Phase 3: Hands-on Training Visits</h4>
+                        <p>5-day intensive visits to developed NRENs featuring real-time ticket handling, service desk operations, monitoring dashboards, and security response workflows.</p>
+                    </div>
+                    <div class="activity-item">
+                        <h4>Phase 4: Problem-Solving Sessions</h4>
+                        <p>Interactive sessions where engineers presented live challenges and brainstormed solutions with host NOC experts.</p>
+                    </div>
+                    <div class="activity-item">
+                        <h4>Phase 5: Knowledge Transfer</h4>
+                        <p>Post-visit compilation of Learning reports and internal workshops conducted by trained professionals in their home countries.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="outcomes" class="section fade-in">
+                <h3>Key Outcomes</h3>
+                <div class="outcomes-grid">
+                    <div class="outcome-card">
+                        <span class="outcome-number">7</span>
+                        <h4>NOC Professionals Trained</h4>
+                        <p>Successfully trained professionals who became in-house champions for network modernization</p>
+                    </div>
+                    <div class="outcome-card">
+                        <span class="outcome-number">70+</span>
+                        <h4>Staff Members Impacted</h4>
+                        <p>Each trained professional went on to train at least 10 other staff members, multiplying the program's impact</p>
+                    </div>
+                    <div class="outcome-card">
+                        <span class="outcome-number">100%</span>
+                        <h4>Inter-NREN Collaboration</h4>
+                        <p>New ecosystem of collaboration including peer review, tool sharing, and security protocol benchmarking</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="future" class="section fade-in">
+                <h3>Future Directions</h3>
+                <p>To ensure the program's benefits continue beyond its timeline, several initiatives are planned:</p>
+                <p><strong>Periodic Follow-up Sessions:</strong> Regular webinars and refresher courses covering advanced topics like AI-driven monitoring, Zero Trust Architecture, and IPv6 planning.</p>
+                <p><strong>Program Replication:</strong> Adaptation and implementation in other regions based on local needs, with participating countries expressing interest in creating mini NOC training academies.</p>
+                <p><strong>Enhanced Inclusivity:</strong> Improved gender inclusivity and representation in future capacity-building efforts, including targeted outreach and mentorship for women engineers.</p>
+            </section>
+
+            <section class="section fade-in">
+                <h3>Sustainable Development Goals</h3>
+                <div class="sdg-cards">
+                    <div class="sdg-card">
+                        <div class="sdg-number">SDG 4</div>
+                        <h4>Quality Education</h4>
+                        <p>Advanced educational opportunities in ICT</p>
+                    </div>
+                    <div class="sdg-card">
+                        <div class="sdg-number">SDG 9</div>
+                        <h4>Industry & Innovation</h4>
+                        <p>Enhanced infrastructure through better network design and security</p>
+                    </div>
+                    <div class="sdg-card">
+                        <div class="sdg-number">SDG 17</div>
+                        <h4>Partnerships</h4>
+                        <p>Strong international partnerships enabling knowledge sharing</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h4>NOC Operations Capacity Building Program</h4>
+                    <p>WP2 - 3rd Call | Asi@Connect Initiative</p>
+                </div>
+                <div class="footer-logos">
+                    <img src="images/logos/eu-logo.png" alt="European Union" class="footer-logo">
+                    <img src="images/logos/tein-logo.png" alt="TEIN*CC" class="footer-logo">
+                    <img src="images/logos/asia-connect-logo.png" alt="Asi@Connect" class="footer-logo">
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Add fade-in animation on scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in');
+                    }
+                });
+            });
+
+            document.querySelectorAll('.section').forEach(section => {
+                observer.observe(section);
+            });
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
